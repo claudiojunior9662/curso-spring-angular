@@ -22,11 +22,11 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false, length = 150)
-    @NotEmpty
+    @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
     @Column(nullable = false, length = 11)
-    @NotNull
-    @CPF
+    @NotNull(message = "{campo.cpf.obrigatorio}")
+    @CPF(message = "{campo.cpf.invalido}")
     private String cpf;
     @Column(updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
