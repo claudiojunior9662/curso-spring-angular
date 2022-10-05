@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Angular ###
+node_modules/
+package-lock.json
