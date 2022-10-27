@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a531a085-7eab-4ce4-ac56-cb5dea02864b" name="Changes" comment="[ADD] aulas 34 e 35">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="a531a085-7eab-4ce4-ac56-cb5dea02864b" name="Changes" comment="[ADD] aulas 34 e 35" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +87,7 @@
       <workItem from="1664324917679" duration="596000" />
       <workItem from="1664499002276" duration="1377000" />
       <workItem from="1664926563338" duration="1252000" />
+      <workItem from="1666484731749" duration="617000" />
     </task>
     <task id="LOCAL-00001" summary="[ADD] aula 18">
       <created>1663026877643</created>
