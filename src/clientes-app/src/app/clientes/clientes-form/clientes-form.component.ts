@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ClientesService } from 'src/app/clientes.service';
 import { Cliente } from '../cliente';
 
@@ -16,24 +16,43 @@ export class ClientesFormComponent implements OnInit {
 
   constructor(
     private service: ClientesService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { 
     this.cliente = new Cliente();
   }
 
   ngOnInit(): void {
-    this.cliente = new Cliente();
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    if(id) {
+      this.service.getClienteById(id).subscribe(res => {
+        this.cliente = res;
+      })
+    } else {
+      this.cliente = new Cliente();
+    }
   }
 
   onSubmit() {
-    this.service.salvar(this.cliente).subscribe(res => {
-      this.success = true;
-       this.errors = [];
-       this.cliente = res;
-    }, errorRes => {
-      this.success = false;
-      this.errors = errorRes.error.errors;
-    });
+    if(this.cliente.id){
+      this.service.atualizar(this.cliente).subscribe(() => {
+        this.success = true;
+         this.errors = [];
+      }, errorRes => {
+        this.success = false;
+        this.errors = errorRes.error.errors;
+      });
+    } else {
+      this.service.salvar(this.cliente).subscribe(res => {
+        this.success = true;
+         this.errors = [];
+         this.cliente = res;
+      }, errorRes => {
+        this.success = false;
+        this.errors = errorRes.error.errors;
+      });
+    }
+
   }
 
   voltarParaListagem(): void {

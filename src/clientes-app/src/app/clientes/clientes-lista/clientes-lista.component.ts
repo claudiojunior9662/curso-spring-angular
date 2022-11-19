@@ -19,9 +19,4 @@ export class ClientesListaComponent implements OnInit {
       this.clientes = res;
     });
   }
-
-  novoCadastro(): void {
-    this.router.navigate(['/clientes-form'])
-  }
-
 }
