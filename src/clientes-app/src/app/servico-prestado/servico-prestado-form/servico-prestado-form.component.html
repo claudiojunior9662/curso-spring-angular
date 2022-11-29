@@ -6,6 +6,17 @@
     <form #form="ngForm" (submit)="save()">
         <div class="row">
             <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success">
+                    Serviço Prestado criado/atualizado com sucesso.
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+                    {{ error }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label>Cliente: </label>
                     <select class="form-control" [(ngModel)]="servicoPrestado.idCliente" [ngModelOptions]="{standalone: true}">
