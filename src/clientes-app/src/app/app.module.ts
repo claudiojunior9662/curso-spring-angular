@@ -12,11 +12,14 @@ import { ClientesService } from './clientes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
 import { ServicoPrestadoService } from './servico-prestado.service';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { ServicoPrestadoService } from './servico-prestado.service';
     ClientesModule,
     RouterModule,
     HttpClientModule,
-    ServicoPrestadoModule
+    ServicoPrestadoModule,
+    FormsModule
   ],
   providers: [
     ClientesService,
