@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,22 @@ export class LoginComponent {
   username?: string;
   password?: string;
   loginError = false;
+  cadastrando = false;
 
-  constructor() { }
+  constructor(
+    protected router: Router
+  ) { }
 
   onSubmit():void {
-    console.log(this.username);
+    this.router.navigate(['/home']);
+  }
+
+  preparaCadastrar(event: any): void {
+    event.preventDefault();
+    this.cadastrando = true;
+  }
+
+  cancelarCadastro(): void {
+    this.cadastrando = false;
   }
 }
