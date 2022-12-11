@@ -18,7 +18,7 @@ export class ClientesFormComponent implements OnInit {
     private service: ClientesService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { 
+  ) {
     this.cliente = new Cliente();
   }
 
@@ -56,7 +56,7 @@ export class ClientesFormComponent implements OnInit {
   }
 
   voltarParaListagem(): void {
-    this.router.navigate(['/clientes-lista'])
+    this.router.navigate(['/clientes'])
   }
 
 }
