@@ -15,13 +15,16 @@ import { ServicoPrestadoService } from './servico-prestado.service';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthService } from './auth.service';
+import { NotificacaoComponent } from './layout/notificacao/notificacao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    NotificacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +38,12 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   providers: [
     ClientesService,
-    ServicoPrestadoService
+    ServicoPrestadoService,
+    AuthService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    NotificacaoComponent
+  ]
 })
 export class AppModule { }

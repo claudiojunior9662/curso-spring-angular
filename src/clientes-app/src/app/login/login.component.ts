@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Usuario } from './usuario';
+import { Notificacao, NotificationType } from '../layout/notificacao/notificacao';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   username?: string;
   password?: string;
-  loginError = false;
   cadastrando = false;
 
+  notificacoes: Notificacao[] = [];
+
   constructor(
-    protected router: Router
+    protected router: Router,
+    protected authService: AuthService
   ) { }
 
   onSubmit():void {
@@ -28,5 +32,17 @@ export class LoginComponent {
 
   cancelarCadastro(): void {
     this.cadastrando = false;
+  }
+
+  cadastrar(): void {
+    this.notificacoes = [];
+    const usuario: Usuario = new Usuario();
+    usuario.username = this.username;
+    usuario.password = this.password;
+    this.authService.salvar(usuario).subscribe(() => {
+      this.notificacoes.push({alertType: NotificationType.SUCCESS, message: 'Cadastro realizado com sucesso. Faça o login'});
+    }, () => {
+      this.notificacoes.push({alertType: NotificationType.DANGER, message: 'Ocorreu um erro ao realizar o cadastro. Tente novamente.'});
+    })
   }
 }
