@@ -41,8 +41,10 @@ export class LoginComponent {
     usuario.password = this.password;
     this.authService.salvar(usuario).subscribe(() => {
       this.notificacoes.push({alertType: NotificationType.SUCCESS, message: 'Cadastro realizado com sucesso. Faça o login'});
-    }, () => {
-      this.notificacoes.push({alertType: NotificationType.DANGER, message: 'Ocorreu um erro ao realizar o cadastro. Tente novamente.'});
+    }, errorResponse => {
+      errorResponse.error.errors.forEach((e: string) => {
+        this.notificacoes.push({alertType: NotificationType.DANGER, message: e});
+      });
     })
   }
 }
