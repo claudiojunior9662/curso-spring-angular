@@ -22,7 +22,26 @@ export class LoginComponent {
   ) { }
 
   onSubmit():void {
-    this.router.navigate(['/home']);
+    this.notificacoes = [];
+    if(!this.username){
+      this.notificacoes.push({alertType: NotificationType.DANGER, message: 'Informe o usuário'});
+      return;
+    }
+
+    if(!this.password){
+      this.notificacoes.push({alertType: NotificationType.DANGER, message: 'Informe a senha'});
+      return;
+    }
+
+    this.authService.tentarLogar(this.username!, this.password!).subscribe(response => {
+      const token = JSON.stringify(response);
+      localStorage.setItem('token', token);
+      this.router.navigate(['/home']);
+    }, () => {
+      this.notificacoes.push({alertType: NotificationType.DANGER, message: 'Usuário ou senha inválidos'});
+    });
+
+
   }
 
   preparaCadastrar(event: any): void {
@@ -41,6 +60,7 @@ export class LoginComponent {
     usuario.password = this.password;
     this.authService.salvar(usuario).subscribe(() => {
       this.notificacoes.push({alertType: NotificationType.SUCCESS, message: 'Cadastro realizado com sucesso. Faça o login'});
+      this.cadastrando = false;
     }, errorResponse => {
       errorResponse.error.errors.forEach((e: string) => {
         this.notificacoes.push({alertType: NotificationType.DANGER, message: e});
